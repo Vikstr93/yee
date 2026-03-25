@@ -122,6 +122,42 @@ export const mockOrders: Order[] = [
   },
 ];
 
+export const siteContent = [
+  {
+    id: "hero-title",
+    key: "hero.title",
+    valueSv: "Ascended Heroes.",
+    valueEn: "Ascended Heroes.",
+  },
+  {
+    id: "hero-description",
+    key: "hero.description",
+    valueSv:
+      "Kuraterade urval av de mest sällsynta Pokémon-korten. PSA-graded, japanska exklusiva och premium singles.",
+    valueEn:
+      "Curated selections of the rarest Pokemon cards. PSA graded legends, Japanese exclusives and premium singles.",
+  },
+  {
+    id: "hero-cta",
+    key: "hero.ctaPrimary",
+    valueSv: "Shop The Vault",
+    valueEn: "Shop The Vault",
+  },
+] as const;
+
+export const siteImages = [
+  {
+    id: "hero-image",
+    key: "hero.image",
+    url: "https://images.unsplash.com/photo-1640260858225-7d24f1542b31?auto=format&fit=crop&w=1600&q=80",
+  },
+  {
+    id: "category-graded",
+    key: "category.graded",
+    url: "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1200&q=80",
+  },
+] as const;
+
 export function getProductById(id: string): Product | undefined {
   return products.find((product) => product.id === id);
 }

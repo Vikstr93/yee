@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { SupportedLocale } from "@/lib/types";
 import { defaultLocale } from "@/i18n";
@@ -13,6 +14,18 @@ export function LanguageSwitcher({
   currentLocale = defaultLocale,
 }: {
   currentLocale?: SupportedLocale;
+}) {
+  return (
+    <Suspense fallback={null}>
+      <LanguageSwitcherInner currentLocale={currentLocale} />
+    </Suspense>
+  );
+}
+
+function LanguageSwitcherInner({
+  currentLocale,
+}: {
+  currentLocale: SupportedLocale;
 }) {
   const router = useRouter();
   const pathname = usePathname();

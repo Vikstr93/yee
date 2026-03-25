@@ -2,16 +2,17 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-import { stripe } from "@/lib/stripe";
+import { getStripeClient } from "@/lib/stripe";
 
 export async function POST(request: Request) {
   const body = await request.text();
   const signature = (await headers()).get("stripe-signature");
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+  const stripe = getStripeClient();
 
-  if (!signature || !webhookSecret) {
+  if (!signature || !webhookSecret || !stripe) {
     return NextResponse.json(
-      { error: "Missing signature or webhook secret" },
+      { error: "Missing signature, webhook secret, or Stripe config" },
       { status: 400 },
     );
   }

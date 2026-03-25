@@ -16,14 +16,15 @@ function formatTime(ms: number): string {
 
 export function Countdown({ endsAt }: { endsAt: string }) {
   const target = useMemo(() => new Date(endsAt).getTime(), [endsAt]);
-  const [left, setLeft] = useState(target - Date.now());
+  const [now, setNow] = useState(() => Date.now());
+  const left = target - now;
 
   useEffect(() => {
     const id = setInterval(() => {
-      setLeft(target - Date.now());
+      setNow(Date.now());
     }, 1000);
     return () => clearInterval(id);
-  }, [target]);
+  }, []);
 
   return <span className="text-sm font-semibold text-primary">{formatTime(left)}</span>;
 }

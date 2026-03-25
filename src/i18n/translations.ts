@@ -1,6 +1,7 @@
 import type { SupportedLocale } from "@/lib/types";
 
-type TranslationTree = Record<string, string | TranslationTree>;
+type TranslationValue = string | { [key: string]: TranslationValue };
+type TranslationTree = { [key: string]: TranslationValue };
 
 const translations: Record<SupportedLocale, TranslationTree> = {
   sv: {

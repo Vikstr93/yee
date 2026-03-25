@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Suspense } from "react";
 import type { SupportedLocale } from "@/lib/types";
 import { t } from "@/i18n/translations";
 import { LanguageSwitcher } from "@/components/language-switcher";
@@ -30,7 +31,9 @@ export function Navbar({ locale = "sv" }: { locale?: SupportedLocale }) {
         </div>
 
         <div className="flex items-center gap-3">
-          <LanguageSwitcher currentLocale={locale} />
+          <Suspense fallback={null}>
+            <LanguageSwitcher currentLocale={locale} />
+          </Suspense>
           <Link className="rounded-full p-2 transition hover:bg-surface-container-high" href="/cart">
             <span className="material-symbols-outlined text-on-surface">shopping_cart</span>
           </Link>
